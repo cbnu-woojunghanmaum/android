@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "552436657437",
+    "project_id": "joljack-863ea",
+    "storage_bucket": "joljack-863ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552436657437:android:094e894eafc63fc916c5f4",
+        "android_client_info": {
+          "package_name": "com.devjsg.cj_logistics_future_technology"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxzuul3I8eCT1E7F3vIADskrMWzZ0oJk0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
