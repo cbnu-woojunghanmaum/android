@@ -9,7 +9,7 @@ KSP 1.9.22-1.0.17
   
 적용 라이브러리 : Android Jetpack(Compose, Compose Navigation, Hilt etc.), WearOS, HealthServices, JWT, DataStore, WearOs DataLayer, Coroutines, Ktor, Biometric, Paing3, Concurrent, SecurityCryptoKtx, WorkManager, Firebase(firebaseCrashlytics, FCM, App Distribution), Google Map, MpAndroidChart
 
-### (본선 현장대회) 직원 레포트 화면
+### 직원 레포트 화면
 | ![KakaoTalk_20240811_153211951-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/54fa2dd2-bf03-4e52-8417-92d2852d3b90)<br> | ![KakaoTalk_20240811_153209758-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/00964876-afba-47e7-9e5b-de1449446b18)<br> | ![KakaoTalk_20240811_153209378-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/1eb709ac-0d35-427a-a66d-c67b54093f12) |
 | :-----------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------: |
 | 필터 및 정렬 설정 기능                                                                                                                                         | 아이템 개수에 따른 페이징 처리                                                                                                                                     | 특정 직원 조회 기능                                                                                                                                       |
