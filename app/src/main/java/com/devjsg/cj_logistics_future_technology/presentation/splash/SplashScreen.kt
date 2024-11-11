@@ -19,6 +19,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -41,12 +42,10 @@ fun SplashScreen(navController: NavController, viewModel: MainViewModel = hiltVi
         if (isLoggedIn != null) {
             val (decodedSub, auth) = decodeJwt(isLoggedIn!!)
             if (decodedSub == "1" || auth == "ROLE_ADMIN") {
-                //대회 평가를 위해 관리자 홈이 아닌, 로그인 화면으로 초기 세팅
                 navController.navigate("login") {
                     popUpTo("splash") { inclusive = true }
                 }
             } else {
-                //대회 평가를 위해 근로자 홈이 아닌, 로그인 화면으로 초기 세팅
                 navController.navigate("login") {
                     popUpTo("splash") { inclusive = true }
                 }
@@ -80,14 +79,21 @@ fun SplashScreen(navController: NavController, viewModel: MainViewModel = hiltVi
             .background(Color.White)
             .padding(vertical = 32.dp, horizontal = 16.dp),
     ) {
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(100.dp))
 
-        Image(
-            imageVector = ImageVector.vectorResource(id = R.drawable.ic_cj_logistics),
-            contentDescription = "CJ Logistics Icon",
-            modifier = Modifier
-                .width(128.dp)
-        )
+//        Image(
+//            imageVector = ImageVector.vectorResource(id = R.drawable.ic_cj_logistics),
+//            contentDescription = "CJ Logistics Icon",
+//            modifier = Modifier
+//                .width(128.dp)
+//        )
+//            Image(
+//                painter = painterResource(id = R.drawable.ic_smartworker_main_logo),
+//                contentDescription = "CJ Logo",
+//                modifier = Modifier
+//                    .width(128.dp)
+//                    .height(128.dp)
+//            )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = "스마트워커와 함께하는 \n안전한 건강 관리 생활",
@@ -99,7 +105,7 @@ fun SplashScreen(navController: NavController, viewModel: MainViewModel = hiltVi
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
-            text = "CJ대한통운에서 제공하는 물류 현장 근로 \n보조 서비스에 오신 것을 진심으로 환영합니다.",
+            text = "물류 현장 근로 \n보조 서비스에 오신 것을 진심으로 환영합니다.",
             style = TextStyle(
                 fontSize = 16.sp,
                 lineHeight = 24.sp,
