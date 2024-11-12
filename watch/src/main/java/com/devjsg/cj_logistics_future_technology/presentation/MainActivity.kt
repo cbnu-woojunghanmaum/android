@@ -1,6 +1,5 @@
 package com.devjsg.cj_logistics_future_technology.presentation
 
-import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -24,10 +23,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
-
         super.onCreate(savedInstanceState)
         requestPermissions()
+        requestHealthPermissions()  // 헬스 관련 권한 요청 추가
         disableBatteryOptimizations()
 
         setTheme(android.R.style.Theme_DeviceDefault)
@@ -42,14 +40,40 @@ class MainActivity : ComponentActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             requestNotificationPermission()
         }
+
+        // Health Connect 설정 화면 열기
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            openHealthConnectSettings()
+        }
+    }
+
+    // Health Connect 설정 화면 열기 (설치 여부 확인)
+    private fun openHealthConnectSettings() {
+        val healthConnectIntent = Intent("androidx.health.ACTION_HEALTH_CONNECT_SETTINGS")
+        if (isHealthConnectAppInstalled()) {
+            startActivity(healthConnectIntent)
+        } else {
+            Toast.makeText(this, "Health Connect 앱이 설치되어 있지 않습니다.", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    // Health Connect 앱 설치 여부 확인
+    private fun isHealthConnectAppInstalled(): Boolean {
+        val pm = packageManager
+        return try {
+            pm.getPackageInfo("com.google.android.apps.healthdata", PackageManager.GET_ACTIVITIES)
+            true
+        } catch (e: PackageManager.NameNotFoundException) {
+            false
+        }
     }
 
     private fun requestPermissions() {
         val requiredPermissions = arrayOf(
-            Manifest.permission.BODY_SENSORS,
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.FOREGROUND_SERVICE,
-            Manifest.permission.WAKE_LOCK
+            android.Manifest.permission.BODY_SENSORS,
+            android.Manifest.permission.ACCESS_FINE_LOCATION,
+            android.Manifest.permission.FOREGROUND_SERVICE,
+            android.Manifest.permission.WAKE_LOCK
         )
 
         val missingPermissions = requiredPermissions.filter {
@@ -88,6 +112,22 @@ class MainActivity : ComponentActivity() {
                 // 권한 요청
                 requestPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
             }
+        }
+    }
+
+    // 헬스 관련 권한 요청
+    private fun requestHealthPermissions() {
+        val permissions = arrayOf(
+            "android.permission.health.READ_HEART_RATE",
+            "android.permission.health.WRITE_HEART_RATE"
+        )
+
+        val missingPermissions = permissions.filter {
+            ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
+        }
+
+        if (missingPermissions.isNotEmpty()) {
+            ActivityCompat.requestPermissions(this, missingPermissions.toTypedArray(), 1)
         }
     }
 

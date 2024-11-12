@@ -74,6 +74,7 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     implementation(libs.coroutines.android)
     implementation(libs.coroutines.play.services)
+    implementation ("androidx.health.connect:connect-client:1.1.0-alpha08")
 
     implementation(libs.hilt.core)
     ksp(libs.hilt.compiler)
